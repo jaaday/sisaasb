@@ -3,7 +3,6 @@ package br.ufrn.cerescaico.bsi.sisaasb.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -20,17 +18,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "habilidade")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Habilidade.findAll", query = "SELECT h FROM Habilidade h"),
     @NamedQuery(name = "Habilidade.findByServicoCodigo", query = "SELECT h FROM Habilidade h WHERE h.habilidadePK.servicoCodigo = :servicoCodigo"),
     @NamedQuery(name = "Habilidade.findByFuncionarioCodigo", query = "SELECT h FROM Habilidade h WHERE h.habilidadePK.funcionarioCodigo = :funcionarioCodigo"),
     @NamedQuery(name = "Habilidade.findByNivel", query = "SELECT h FROM Habilidade h WHERE h.nivel = :nivel"),
     @NamedQuery(name = "Habilidade.findByDataCadastro", query = "SELECT h FROM Habilidade h WHERE h.dataCadastro = :dataCadastro")})
-public class Habilidade implements Serializable {
+public class Habilidade extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected HabilidadePK habilidadePK;
+    
     @Column(name = "nivel")
     private Integer nivel;
     @Column(name = "data_cadastro")
@@ -44,22 +40,6 @@ public class Habilidade implements Serializable {
     private Funcionario funcionario;
 
     public Habilidade() {
-    }
-
-    public Habilidade(HabilidadePK habilidadePK) {
-        this.habilidadePK = habilidadePK;
-    }
-
-    public Habilidade(int servicoCodigo, int funcionarioCodigo) {
-        this.habilidadePK = new HabilidadePK(servicoCodigo, funcionarioCodigo);
-    }
-
-    public HabilidadePK getHabilidadePK() {
-        return habilidadePK;
-    }
-
-    public void setHabilidadePK(HabilidadePK habilidadePK) {
-        this.habilidadePK = habilidadePK;
     }
 
     public Integer getNivel() {
@@ -94,29 +74,4 @@ public class Habilidade implements Serializable {
         this.funcionario = funcionario;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (habilidadePK != null ? habilidadePK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Habilidade)) {
-            return false;
-        }
-        Habilidade other = (Habilidade) object;
-        if ((this.habilidadePK == null && other.habilidadePK != null) || (this.habilidadePK != null && !this.habilidadePK.equals(other.habilidadePK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.Habilidade[ habilidadePK=" + habilidadePK + " ]";
-    }
-    
 }

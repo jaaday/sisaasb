@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
  *
  * @author Jaaday
  */
+@SuppressWarnings("serial")
 @Embeddable
 public class HabilidadePK implements Serializable {
     @Basic(optional = false)
@@ -40,35 +41,6 @@ public class HabilidadePK implements Serializable {
 
     public void setFuncionarioCodigo(int funcionarioCodigo) {
         this.funcionarioCodigo = funcionarioCodigo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) servicoCodigo;
-        hash += (int) funcionarioCodigo;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HabilidadePK)) {
-            return false;
-        }
-        HabilidadePK other = (HabilidadePK) object;
-        if (this.servicoCodigo != other.servicoCodigo) {
-            return false;
-        }
-        if (this.funcionarioCodigo != other.funcionarioCodigo) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.HabilidadePK[ servicoCodigo=" + servicoCodigo + ", funcionarioCodigo=" + funcionarioCodigo + " ]";
     }
     
 }

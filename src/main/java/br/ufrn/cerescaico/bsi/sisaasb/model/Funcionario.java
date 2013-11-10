@@ -3,22 +3,20 @@ package br.ufrn.cerescaico.bsi.sisaasb.model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -27,7 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "funcionario")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f"),
     @NamedQuery(name = "Funcionario.findByCodigo", query = "SELECT f FROM Funcionario f WHERE f.codigo = :codigo"),
@@ -37,13 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByTelefone", query = "SELECT f FROM Funcionario f WHERE f.telefone = :telefone"),
     @NamedQuery(name = "Funcionario.findBySenha", query = "SELECT f FROM Funcionario f WHERE f.senha = :senha"),
     @NamedQuery(name = "Funcionario.findByDataCadastro", query = "SELECT f FROM Funcionario f WHERE f.dataCadastro = :dataCadastro")})
-public class Funcionario implements Serializable {
+public class Funcionario extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "codigo")
-    private Integer codigo;
+
     @Basic(optional = false)
     @Column(name = "cpf")
     private String cpf;
@@ -67,27 +60,16 @@ public class Funcionario implements Serializable {
     private Salao salaoCodigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario")
     private Collection<Habilidade> habilidadeCollection;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Usuario usuario;
 
     public Funcionario() {
     }
 
-    public Funcionario(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public Funcionario(Integer codigo, String cpf, String nome, String senha) {
-        this.codigo = codigo;
+    public Funcionario(String cpf, String nome, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.senha = senha;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public String getCpf() {
@@ -163,30 +145,13 @@ public class Funcionario implements Serializable {
     public void setHabilidadeCollection(Collection<Habilidade> habilidadeCollection) {
         this.habilidadeCollection = habilidadeCollection;
     }
+    
+    public Usuario getUsuario() {
+		return usuario;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Funcionario)) {
-            return false;
-        }
-        Funcionario other = (Funcionario) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.Funcionario[ codigo=" + codigo + " ]";
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
     
 }
