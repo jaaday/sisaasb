@@ -20,7 +20,6 @@ import javax.persistence.TemporalType;
 @Table(name = "agendamento")
 @NamedQueries({
     @NamedQuery(name = "Agendamento.findAll", query = "SELECT a FROM Agendamento a"),
-    @NamedQuery(name = "Agendamento.findByCidogo", query = "SELECT a FROM Agendamento a WHERE a.cidogo = :cidogo"),
     @NamedQuery(name = "Agendamento.findByDataAgendamento", query = "SELECT a FROM Agendamento a WHERE a.dataAgendamento = :dataAgendamento"),
     @NamedQuery(name = "Agendamento.findByStatusAgendamento", query = "SELECT a FROM Agendamento a WHERE a.statusAgendamento = :statusAgendamento")})
 public class Agendamento extends BaseEntity implements Serializable {

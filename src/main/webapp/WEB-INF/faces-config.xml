@@ -15,7 +15,7 @@
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>goToPageIndex</from-outcome>
-			<to-view-id>/index.jsp</to-view-id>
+			<to-view-id>/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

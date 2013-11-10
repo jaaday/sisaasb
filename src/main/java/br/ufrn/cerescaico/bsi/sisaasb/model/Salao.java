@@ -25,11 +25,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "salao")
 @NamedQueries({
     @NamedQuery(name = "Salao.findAll", query = "SELECT s FROM Salao s"),
-    @NamedQuery(name = "Salao.findByCodigo", query = "SELECT s FROM Salao s WHERE s.codigo = :codigo"),
     @NamedQuery(name = "Salao.findByCnpj", query = "SELECT s FROM Salao s WHERE s.cnpj = :cnpj"),
     @NamedQuery(name = "Salao.findByNome", query = "SELECT s FROM Salao s WHERE s.nome = :nome"),
     @NamedQuery(name = "Salao.findByNivel", query = "SELECT s FROM Salao s WHERE s.nivel = :nivel"),
-    @NamedQuery(name = "Salao.findBySenha", query = "SELECT s FROM Salao s WHERE s.senha = :senha"),
     @NamedQuery(name = "Salao.findByDataCadastro", query = "SELECT s FROM Salao s WHERE s.dataCadastro = :dataCadastro")})
 public class Salao extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;

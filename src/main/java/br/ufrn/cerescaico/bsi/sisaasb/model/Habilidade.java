@@ -20,8 +20,6 @@ import javax.persistence.TemporalType;
 @Table(name = "habilidade")
 @NamedQueries({
     @NamedQuery(name = "Habilidade.findAll", query = "SELECT h FROM Habilidade h"),
-    @NamedQuery(name = "Habilidade.findByServicoCodigo", query = "SELECT h FROM Habilidade h WHERE h.habilidadePK.servicoCodigo = :servicoCodigo"),
-    @NamedQuery(name = "Habilidade.findByFuncionarioCodigo", query = "SELECT h FROM Habilidade h WHERE h.habilidadePK.funcionarioCodigo = :funcionarioCodigo"),
     @NamedQuery(name = "Habilidade.findByNivel", query = "SELECT h FROM Habilidade h WHERE h.nivel = :nivel"),
     @NamedQuery(name = "Habilidade.findByDataCadastro", query = "SELECT h FROM Habilidade h WHERE h.dataCadastro = :dataCadastro")})
 public class Habilidade extends BaseEntity implements Serializable {
