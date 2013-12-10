@@ -50,8 +50,6 @@ public class Servico extends BaseEntity implements Serializable {
     private Collection<Atendimento> atendimentoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "servicoCodigo")
     private Collection<Agendamento> agendamentoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "servico")
-    private Collection<Habilidade> habilidadeCollection;
 
     public Servico() {
     }
@@ -112,15 +110,6 @@ public class Servico extends BaseEntity implements Serializable {
 
     public void setAgendamentoCollection(Collection<Agendamento> agendamentoCollection) {
         this.agendamentoCollection = agendamentoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Habilidade> getHabilidadeCollection() {
-        return habilidadeCollection;
-    }
-
-    public void setHabilidadeCollection(Collection<Habilidade> habilidadeCollection) {
-        this.habilidadeCollection = habilidadeCollection;
     }
     
 }

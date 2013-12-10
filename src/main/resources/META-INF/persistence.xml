@@ -7,10 +7,8 @@
 		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Atendimento</class>
 		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Cliente</class>
 		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Funcionario</class>
-		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Habilidade</class>
 		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Salao</class>
 		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Servico</class>
-		<class>br.ufrn.cerescaico.bsi.sisaasb.model.Usuario</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sisaasb_db" />

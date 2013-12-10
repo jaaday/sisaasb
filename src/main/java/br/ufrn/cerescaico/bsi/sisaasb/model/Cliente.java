@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,8 +52,6 @@ public class Cliente extends BaseEntity implements Serializable {
     private Salao salaoCodigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteCodigo")
     private Collection<Agendamento> agendamentoCollection;
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Usuario usuario;
 
 	public Cliente() {
     }
@@ -129,13 +126,5 @@ public class Cliente extends BaseEntity implements Serializable {
     public void setAgendamentoCollection(Collection<Agendamento> agendamentoCollection) {
         this.agendamentoCollection = agendamentoCollection;
     }
-    
-    public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
     
 }

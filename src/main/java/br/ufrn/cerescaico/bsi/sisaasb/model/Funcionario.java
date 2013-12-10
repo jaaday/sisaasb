@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -56,10 +55,6 @@ public class Funcionario extends BaseEntity implements Serializable {
     @JoinColumn(name = "salao_codigo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Salao salaoCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario")
-    private Collection<Habilidade> habilidadeCollection;
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Usuario usuario;
 
     public Funcionario() {
     }
@@ -134,22 +129,5 @@ public class Funcionario extends BaseEntity implements Serializable {
     public void setSalaoCodigo(Salao salaoCodigo) {
         this.salaoCodigo = salaoCodigo;
     }
-
-    @XmlTransient
-    public Collection<Habilidade> getHabilidadeCollection() {
-        return habilidadeCollection;
-    }
-
-    public void setHabilidadeCollection(Collection<Habilidade> habilidadeCollection) {
-        this.habilidadeCollection = habilidadeCollection;
-    }
-    
-    public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
     
 }
